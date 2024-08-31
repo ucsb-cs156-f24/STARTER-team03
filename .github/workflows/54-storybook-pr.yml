@@ -71,7 +71,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3.6.0
       with:
-        node-version: '16'
+        node-version: '20'
         cache: 'npm'
         cache-dependency-path: frontend/package-lock.json
 
@@ -79,7 +79,7 @@ jobs:
       working-directory: frontend
       run: | # Install npm packages and build the Storybook files
         npm install
-        npx build-storybook --docs -o storybook_static_${{ needs.get-pr-num.outputs.pr_number }} -s public
+        npm run build-storybook -- --docs -o storybook_static_${{ needs.get-pr-num.outputs.pr_number }}
  
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
